@@ -36,35 +36,18 @@ pip install -r requirements.txt
 
 - VOC2012应与VOC2007目录结构相同，两个在同一目录下即可
 
-### 训练（单机）
+### 训练（单卡）
 
-最小训练示例（VOC，默认会混合 VOC2007+VOC2012，除非你关掉）：
+最小训练示例（VOC，默认会混合 VOC2007+VOC2012）：
 
 ```bash
-python train.py \
-  --dataset_type voc \
-  --voc2007_root "/path/to/VOC2007/VOCdevkit/VOC2007" \
-  --voc2012_root "/path/to/VOC2012/VOCdevkit/VOC2012" \
-  --split trainval \
-  --image_size 448 \
-  --batch_size 64 \
-  --device cuda
+CUDA_VISIBLE_DEVICES=1 python /PLN-K/train.py   --dataset_type voc --split trainval --image_size 448 --batch_size 64  --optimizer adam --momentum 0.9 --weight_decay 0.00004   --lr_start 0.001 --lr_end 0.005 --warmup_iters 1000 --finetune_iters 30000   --viz_every 10 --conf_thres 0.0 --nms_iou_threshold 0.2 --nms_max_dets 10   --pretrained_backbone
 ```
 
-启用 **高斯 link targets（Lx/Ly）**（可选）：
+启用 **高斯 link targets（Lx/Ly）**：
 
 ```bash
-python train.py \
-  --dataset_type voc \
-  --voc2007_root "/path/to/VOC2007/VOCdevkit/VOC2007" \
-  --voc2012_root "/path/to/VOC2012/VOCdevkit/VOC2012" \
-  --split trainval \
-  --image_size 448 \
-  --batch_size 64 \
-  --device cuda \
-  --use_gaussian_link_targets \
-  --gaussian_link_radius 2 \
-  --gaussian_link_sigma 0.7
+CUDA_VISIBLE_DEVICES=1 python /PLN-K/train.py   --dataset_type voc --split trainval --image_size 448 --batch_size 64  --optimizer adam --momentum 0.9 --weight_decay 0.00004   --lr_start 0.001 --lr_end 0.005 --warmup_iters 1000 --finetune_iters 30000   --viz_every 10 --conf_thres 0.0 --nms_iou_threshold 0.2 --nms_max_dets 10   --pretrained_backbone  --use_gaussian_link_targets --gaussian_link_radius 2 --gaussian_link_sigma 0.7
 ```
 
 ### 训练（多卡 DDP）
@@ -72,33 +55,16 @@ python train.py \
 示例（4 卡）：
 
 ```bash
-torchrun --nproc_per_node=4 train_ddp.py \
-  --dataset_type voc \
-  --voc2007_root "/path/to/VOC2007/VOCdevkit/VOC2007" \
-  --voc2012_root "/path/to/VOC2012/VOCdevkit/VOC2012" \
-  --split trainval \
-  --image_size 448 \
-  --batch_size 64 \
-  --backend nccl \
-  --master_port 29501
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --master_port=29504   "/PLN-K/train_ddp.py"   --dataset_type voc --split trainval --image_size 448 --batch_size 64   --optimizer adam --momentum 0.9 --weight_decay 0.00004   --lr_start 0.001 --lr_end 0.005 --warmup_iters 1000 --finetune_iters 30000   --viz_every 10 --viz_topk 2 --viz_topk_after_nms 0   --conf_thres 0.0 --nms_iou_threshold 0.2 --nms_max_dets 10   --pretrained_backbone --loss_logit_clip 200 --max_grad_norm 5   
 ```
 
 DDP 下同样支持高斯 link targets：
 
 ```bash
-torchrun --nproc_per_node=4 train_ddp.py \
-  --dataset_type voc \
-  --voc2007_root "/path/to/VOC2007/VOCdevkit/VOC2007" \
-  --voc2012_root "/path/to/VOC2012/VOCdevkit/VOC2012" \
-  --split trainval \
-  --image_size 448 \
-  --batch_size 64 \
-  --use_gaussian_link_targets \
-  --gaussian_link_radius 2 \
-  --gaussian_link_sigma 0.7
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --master_port=29504   "/PLN-K/train_ddp.py"   --dataset_type voc --split trainval --image_size 448 --batch_size 64   --optimizer adam --momentum 0.9 --weight_decay 0.00004   --lr_start 0.001 --lr_end 0.005 --warmup_iters 1000 --finetune_iters 30000   --viz_every 10 --viz_topk 2 --viz_topk_after_nms 0   --conf_thres 0.0 --nms_iou_threshold 0.2 --nms_max_dets 10   --pretrained_backbone --loss_logit_clip 200 --max_grad_norm 5    --use_gaussian_link_targets --gaussian_link_radius 2 --gaussian_link_sigma 0.7
 ```
 
-### 推理（Inference）+ mAP 评测
+### 推理（Inference）
 
 推理脚本默认会计算并保存：
 - `mAP@0.5`
@@ -109,40 +75,16 @@ torchrun --nproc_per_node=4 train_ddp.py \
 - `predictions_{split}.json`
 - `map_results_{split}.json`
 
-示例（test 全集，batch 可 >1）：
+示例：
 
 ```bash
-python inference.py \
-  --voc2007_root "/path/to/VOC2007/VOCdevkit/VOC2007" \
-  --split test \
-  --batch_size 16 \
-  --max_batches 0 \
-  --checkpoint "/path/to/checkpoints/pln_step_xxxxxx.pth" \
-  --conf_thres 0 \
-  --output_dir "/path/to/output/infer_test" \
-  --post_nms_score_ratio_filter \
-  --post_nms_score_ratio_w 0.35
+python "inference.py"   --voc2007_root "/PLN-K/VOC2007/VOCdevkit/VOC2007"   --split test --batch_size 16 --max_batches 0   --checkpoint ""   --conf_thres 0   --output_dir ""   --post_nms_score_ratio_w 0.35 --post_nms_score_ratio_filter 
 ```
 
 保存每张图的可视化（会生成较多图片）：
 
 ```bash
-python inference.py \
-  --voc2007_root "/path/to/VOC2007/VOCdevkit/VOC2007" \
-  --split test \
-  --batch_size 1 \
-  --max_batches 50 \
-  --checkpoint "/path/to/checkpoints/pln_step_xxxxxx.pth" \
-  --conf_thres 0 \
-  --output_dir "/path/to/output/infer_test_viz" \
-  --save_visualize \
-  --post_nms_score_ratio_filter \
-  --post_nms_score_ratio_w 0.35
+python "inference.py"   --voc2007_root "/PLN-K/VOC2007/VOCdevkit/VOC2007"   --split test --batch_size 16 --max_batches 0   --checkpoint ""   --conf_thres 0   --output_dir ""   --post_nms_score_ratio_w 0.35 --post_nms_score_ratio_filter  --save_visualize
 ```
 
-关闭评测（只跑推理输出）：
-
-```bash
-python inference.py ... --no-eval_map
-```
 
