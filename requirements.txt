@@ -1,0 +1,18 @@
+# Reproducible runtime dependencies (reference environment)
+#
+# NOTE:
+# - This repo is tested with Python 3.8 + CUDA build of PyTorch (cu118).
+# - The `--index-url` line below ensures pip installs the CUDA 11.8 wheels.
+#   If you want CPU-only, remove that line and adjust torch versions accordingly.
+
+--index-url https://download.pytorch.org/whl/cu118
+
+torch==2.1.2
+torchvision==0.16.2
+torchaudio==2.1.2
+numpy==1.24.3
+Pillow==10.4.0
+matplotlib==3.7.5
+tqdm==4.66.5
+tensorboard==2.12.0
+opencv-python==4.13.0.92

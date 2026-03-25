@@ -1,0 +1,415 @@
+{
+  "config": {
+    "image_size": 448,
+    "grid_size": 14,
+    "B_point": 2,
+    "max_total_points_per_cell": 4,
+    "max_center_points_per_cell": 2,
+    "max_corner_points_per_cell": 2,
+    "split": "trainval",
+    "use_voc2012": false
+  },
+  "global_counts": {
+    "total_images": 5011,
+    "total_boxes": 15662,
+    "total_points": 78310,
+    "total_center_points": 15662,
+    "total_corner_points": 62648,
+    "total_grid_cells_seen": 65515
+  },
+  "overflow_grid_counts": {
+    "cells_total_points_gt_2B": 448,
+    "cells_center_points_gt_B": 43,
+    "cells_corner_points_gt_B": 1637
+  },
+  "overflow_cell_composition": {
+    "overflow_cells_total": 1646,
+    "single_class_overflow_cells": 1137,
+    "multi_class_overflow_cells": 509,
+    "single_class_ratio": 0.6907654921020656,
+    "multi_class_ratio": 0.3092345078979344
+  },
+  "overflow_image_stats": {
+    "overflow_images": 571,
+    "total_images": 5011,
+    "overflow_image_rate": 0.11394931151466774
+  },
+  "class_frequency_all_points_sorted": [
+    [
+      "person",
+      27235
+    ],
+    [
+      "car",
+      8220
+    ],
+    [
+      "chair",
+      7160
+    ],
+    [
+      "bottle",
+      3170
+    ],
+    [
+      "pottedplant",
+      3125
+    ],
+    [
+      "bird",
+      2995
+    ],
+    [
+      "dog",
+      2690
+    ],
+    [
+      "sofa",
+      2125
+    ],
+    [
+      "bicycle",
+      2090
+    ],
+    [
+      "horse",
+      2030
+    ],
+    [
+      "boat",
+      1990
+    ],
+    [
+      "motorbike",
+      1950
+    ],
+    [
+      "cat",
+      1945
+    ],
+    [
+      "tvmonitor",
+      1835
+    ],
+    [
+      "cow",
+      1780
+    ],
+    [
+      "sheep",
+      1765
+    ],
+    [
+      "aeroplane",
+      1655
+    ],
+    [
+      "train",
+      1640
+    ],
+    [
+      "diningtable",
+      1550
+    ],
+    [
+      "bus",
+      1360
+    ]
+  ],
+  "class_frequency_overflow_cells_sorted": [
+    [
+      "person",
+      2939
+    ],
+    [
+      "car",
+      1008
+    ],
+    [
+      "bottle",
+      620
+    ],
+    [
+      "chair",
+      577
+    ],
+    [
+      "sheep",
+      395
+    ],
+    [
+      "pottedplant",
+      250
+    ],
+    [
+      "bird",
+      203
+    ],
+    [
+      "bicycle",
+      128
+    ],
+    [
+      "cow",
+      125
+    ],
+    [
+      "motorbike",
+      111
+    ],
+    [
+      "boat",
+      110
+    ],
+    [
+      "diningtable",
+      86
+    ],
+    [
+      "bus",
+      75
+    ],
+    [
+      "aeroplane",
+      64
+    ],
+    [
+      "tvmonitor",
+      62
+    ],
+    [
+      "horse",
+      23
+    ],
+    [
+      "sofa",
+      15
+    ],
+    [
+      "dog",
+      7
+    ],
+    [
+      "train",
+      5
+    ]
+  ],
+  "class_ratio_in_multiclass_overflow_cells_sorted": [
+    {
+      "class": "bicycle",
+      "ratio": 0.05550239234449761,
+      "count_in_multiclass_overflow_cells": 116,
+      "count_in_all_cells": 2090
+    },
+    {
+      "class": "diningtable",
+      "ratio": 0.05548387096774193,
+      "count_in_multiclass_overflow_cells": 86,
+      "count_in_all_cells": 1550
+    },
+    {
+      "class": "motorbike",
+      "ratio": 0.0441025641025641,
+      "count_in_multiclass_overflow_cells": 86,
+      "count_in_all_cells": 1950
+    },
+    {
+      "class": "bottle",
+      "ratio": 0.04290220820189274,
+      "count_in_multiclass_overflow_cells": 136,
+      "count_in_all_cells": 3170
+    },
+    {
+      "class": "chair",
+      "ratio": 0.03952513966480447,
+      "count_in_multiclass_overflow_cells": 283,
+      "count_in_all_cells": 7160
+    },
+    {
+      "class": "person",
+      "ratio": 0.03344960528731412,
+      "count_in_multiclass_overflow_cells": 911,
+      "count_in_all_cells": 27235
+    },
+    {
+      "class": "car",
+      "ratio": 0.03223844282238443,
+      "count_in_multiclass_overflow_cells": 265,
+      "count_in_all_cells": 8220
+    },
+    {
+      "class": "bus",
+      "ratio": 0.027205882352941177,
+      "count_in_multiclass_overflow_cells": 37,
+      "count_in_all_cells": 1360
+    },
+    {
+      "class": "tvmonitor",
+      "ratio": 0.019618528610354225,
+      "count_in_multiclass_overflow_cells": 36,
+      "count_in_all_cells": 1835
+    },
+    {
+      "class": "cow",
+      "ratio": 0.015730337078651686,
+      "count_in_multiclass_overflow_cells": 28,
+      "count_in_all_cells": 1780
+    },
+    {
+      "class": "pottedplant",
+      "ratio": 0.01344,
+      "count_in_multiclass_overflow_cells": 42,
+      "count_in_all_cells": 3125
+    },
+    {
+      "class": "horse",
+      "ratio": 0.009852216748768473,
+      "count_in_multiclass_overflow_cells": 20,
+      "count_in_all_cells": 2030
+    },
+    {
+      "class": "boat",
+      "ratio": 0.009547738693467337,
+      "count_in_multiclass_overflow_cells": 19,
+      "count_in_all_cells": 1990
+    },
+    {
+      "class": "bird",
+      "ratio": 0.009015025041736227,
+      "count_in_multiclass_overflow_cells": 27,
+      "count_in_all_cells": 2995
+    },
+    {
+      "class": "sofa",
+      "ratio": 0.007058823529411765,
+      "count_in_multiclass_overflow_cells": 15,
+      "count_in_all_cells": 2125
+    },
+    {
+      "class": "sheep",
+      "ratio": 0.0056657223796034,
+      "count_in_multiclass_overflow_cells": 10,
+      "count_in_all_cells": 1765
+    },
+    {
+      "class": "dog",
+      "ratio": 0.001486988847583643,
+      "count_in_multiclass_overflow_cells": 4,
+      "count_in_all_cells": 2690
+    },
+    {
+      "class": "train",
+      "ratio": 0.0012195121951219512,
+      "count_in_multiclass_overflow_cells": 2,
+      "count_in_all_cells": 1640
+    },
+    {
+      "class": "aeroplane",
+      "ratio": 0.0012084592145015106,
+      "count_in_multiclass_overflow_cells": 2,
+      "count_in_all_cells": 1655
+    }
+  ],
+  "overflow_image_examples": [
+    {
+      "dataset": "VOC2007",
+      "image_id": "000009",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000035",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000050",
+      "overflow_cells": 3
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000091",
+      "overflow_cells": 2
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000129",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000150",
+      "overflow_cells": 2
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000153",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000154",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000190",
+      "overflow_cells": 4
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000200",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000208",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000210",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000222",
+      "overflow_cells": 5
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000249",
+      "overflow_cells": 2
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000251",
+      "overflow_cells": 5
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000269",
+      "overflow_cells": 3
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000285",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000288",
+      "overflow_cells": 4
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000302",
+      "overflow_cells": 1
+    },
+    {
+      "dataset": "VOC2007",
+      "image_id": "000303",
+      "overflow_cells": 2
+    }
+  ]
+}
